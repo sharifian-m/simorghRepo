@@ -1,0 +1,17 @@
+<p>contact-list component!</p>
+<table style="border: 1px;">
+    <thead>
+        <tr>
+            <td>Fullname</td>
+            <td>Phone number</td>
+            <td>action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contact of Contacts">
+            <td>{{contact.FullName}}</td>
+            <td>{{contact.Mobile}}</td>
+            <td><button (click)="deleteRow(contact)">delete</button></td>
+        </tr>
+    </tbody>
+</table>
