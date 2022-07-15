@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let contact of Contacts">
+        <tr *ngFor="let contact of contactsList">
             <td>{{contact.FullName}}</td>
             <td>{{contact.Mobile}}</td>
             <td><button (click)="deleteRow(contact)">delete</button></td>

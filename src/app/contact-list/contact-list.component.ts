@@ -9,9 +9,9 @@ import { ContactService } from '../contact.service';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit, AfterViewInit {
+  contactsList: contactDto[] = [];
 
-
-  constructor(
+  constructor(private contactService:ContactService
 
   ) { }
   ngAfterViewInit(): void {
@@ -20,7 +20,7 @@ export class ContactListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+this.contactService.currentContactList$.subscribe(x=>this.contactsList=x)
 
   }
   Contacts: contactDto[] = [];
@@ -32,8 +32,16 @@ export class ContactListComponent implements OnInit, AfterViewInit {
 
   }
   deleteRow(contact: contactDto) {
-    this.Contacts = this.Contacts.filter(x => x.ID != contact.ID);
-    //TODO: Set contactService value with this.Contacts.length
-
-  }
+    
+    for (let i = 0; i <= this.contactsList.length - 1; i++) {
+      if (this.contactsList[i].ID === contact.ID) {
+        this.contactsList.splice(i, 1);
+      }
+    }
+    this.contactsList = [...this.contactsList];
+         this.contactService.updateContactsListAfterDelete(this.contactsList);
+         
+      //TODO: Set contactService value with this.Contacts.length
+  
+    }
 }

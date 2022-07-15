@@ -9,12 +9,12 @@ import { ContactService } from '../contact.service';
 })
 export class ContactSummeryComponent implements OnInit {
 
-  constructor(
+  constructor(private contactservice:ContactService
 
   ) { }
   CountOfContacts: number = 0;
   ngOnInit(): void {
-
+this.contactservice.currentContactList$.subscribe(x=>this.CountOfContacts=x.length)
     // TODO: Set value with subscribe contactService
     //this.CountOfContacts = value;
   }
